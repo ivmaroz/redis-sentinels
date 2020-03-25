@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+
+########################################################################################################################
+  redis1:
+    build: redis/
+    ports:
+      - ${REDIS_PORT}:6379
+    env_file:
+      - .env
+    entrypoint: /start-redis.sh
+    networks:
+      redisnet:
+        ipv4_address: 172.22.1.10
+########################################################################################################################
+  sentinel1:
+    build: redis/
+    ports:
+      - ${REDIS_SENTINEL_PORT}:26379
+    env_file:
+      - .env
+    entrypoint: /start-sentinel.sh
+    networks:
+      redisnet:
+        ipv4_address: 172.22.1.11
+########################################################################################################################
+networks:
+  redisnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.22.1.0/24
