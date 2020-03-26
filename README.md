@@ -14,6 +14,8 @@ REDIS_PASSWORD=<Пароль к redis>
 MASTERS=redis-pres-n1
 
 REDIS_SENTINEL_PORT=26379
+
+SUBNET=172.50.1.0/24
 ```
 
 # Запуск

@@ -13,7 +13,6 @@ services:
     entrypoint: /start-redis.sh
     networks:
       redisnet:
-        ipv4_address: 172.22.1.10
 ########################################################################################################################
   sentinel1:
     build: redis/
@@ -25,7 +24,6 @@ services:
     entrypoint: /start-sentinel.sh
     networks:
       redisnet:
-        ipv4_address: 172.22.1.11
 ########################################################################################################################
 networks:
   redisnet:
@@ -33,4 +31,4 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 172.22.1.0/24
+        - subnet: ${SUBNET}
